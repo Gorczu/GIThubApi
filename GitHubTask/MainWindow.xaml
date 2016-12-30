@@ -1,0 +1,26 @@
+﻿<Window x:Class="GitHubTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Git Hub Users" Height="350" Width="525" SizeChanged="WindowSizeChanged">
+    <StackPanel VerticalAlignment="Stretch">
+        <Label Content="No intrernet connection. Data from last response" Visibility="{Binding AlerNoConnectionVisibility, Mode=OneWay}" FontWeight="Bold" Background="Yellow"/>
+        <Label Content="No intrernet connection and no data from last response" Visibility="{Binding AlerNoPreviousDataVisibility, Mode=OneWay}" FontWeight="Bold" Background="Yellow"/>
+
+            <Grid Height="270" Name="Grid">
+            <DataGrid Name="DataGrid" ItemsSource="{Binding GitHubUsers}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Login" Binding="{Binding Login}" Width="1*" />
+                        <DataGridTextColumn Header="Number of repositories" Binding="{Binding NumOfRepos, IsAsync=True}" Width="1*"/>
+                        <DataGridTemplateColumn Header="Avatar" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5" Source="{Binding Avatar}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+    </StackPanel>
+</Window>
